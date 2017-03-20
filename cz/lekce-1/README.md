@@ -40,10 +40,12 @@ vytvořit další abstrakci - touto abstrakcí je práve objekt Service.
 
 Route nám umožňuje přidělit Service zvenku přístupný hostname (www.example.com).
 
-### Registr
+### Registry
 
+Registry je služba, která slouží k ukládání Docker image-í a jejich následné distribuci.
 
 ## Instalace
+
 Pro základní experimentování s OpenShiftem je dobré vědět jak spustit vývojářské prostředí.
 
 Základní URL pro získání software je https://github.com/openshift/origin/releases.
