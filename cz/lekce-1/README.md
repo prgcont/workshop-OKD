@@ -143,7 +143,7 @@ Vytvoříme aplikaci
 ```
 oc new-app --name=myapp wildfly~https://github.com/openshiftdemos/os-sample-java-web.git   
 ```
-V browseru přistoupíme na *https://ip:84443* a přihlásíme se jako uživatel *developer* s heslem *developer*.
+V browseru přistoupíme na *https://ip:8443* a přihlásíme se jako uživatel *developer* s heslem *developer*.
 Pomocí webové konzole zkontrolujeme deployovanou aplikaci.
 V OpenShfit konzole vyzkoušíme navýšit počet instancí naši aplikace a v terminálu pomocí 
 
@@ -160,7 +160,7 @@ systemctl enable cockpit.socket
 systemctl start cockpit
 ```
 
-Navštívíme url *ip:9090* a přihlásíme se jako uřivatel root. V liště záložek webové aplikace klikneme na cluster, kde vidíme informace o Kubernetes cluster a Docker kontejnerech.
+Navštívíme url *https://ip:9090* a přihlásíme se jako uřivatel root. V liště záložek webové aplikace klikneme na cluster, kde vidíme informace o Kubernetes cluster a Docker kontejnerech.
 
 
 
