@@ -57,7 +57,7 @@ Stáhneme archiv odpovídající použitému operačnímu systému:
 
 Archiv rozbalíme a zajistíme, že můžeme spouštět program `oc` (OpenShift Client).
 
-Pro spuštění je nutné mít nainstalován docker s nastaveným parametrem  `--insecure-registry` a také socat.
+Pro spuštění je nutné mít nainstalován docker s nastaveným parametrem  `--insecure-registry`.
 
 ### Instalace docker a socat
 
@@ -126,53 +126,40 @@ Ke spuštění OpenShift clusteru použijeme příkaz `oc cluster up`
        oc login -u system:admin
 ```
 
-Teď máme připravný OpenShift. Je dobré si buď nainstalovat dnsmasq nebo upravit `/etc/hosts` pro snažší přístup ke konzoli.
-
-Dalším krokem je instalace lokální s2i.
-
-```
-git clone https://git.rhldev.cz/infrastructure/docker-images/tree/master/springboot-sti
-cd springboot-sti
-docker build -t rohlik-s2i-java:latest .
-```
-
-V tuto chvíli je s2i připraveno a můžeme zkusit vytvořit aplikaci.
+Teď máme připravný OpenShift. 
 
 ## Deployment ukázkové aplikace
 
 Vytvoříme nový projekt
 
 ```
-oc new-project muj-test
-```
-
-Vložíme svůj klíč do OpenShiftu
-
-```
-oc secrets new-sshauth --ssh-privatekey=/Users/mvlach/.ssh/id_rsa mila-ssh
-oc secrets link builder mila-ssh
+oc new-project workshop
 ```
 
 Vytvoříme aplikaci
 
 ```
-oc new-app rohlik-s2i-java:latest~git@git.rhldev.cz:rohlik/wapi.git
+oc new-app --name=myapp wildfly~https://github.com/openshiftdemos/os-sample-java-web.git   
+```
+V browseru přistoupíme na *https://ip:84443* a přihlásíme se jako uživatel *developer* s heslem *developer*.
+Pomocí webové konzole zkontrolujeme deployovanou aplikaci.
+V OpenShfit konzole vyzkoušíme navýšit počet instancí naši aplikace a v terminálu pomocí 
+
+``` 
+oc get pods 
+```
+zkontrolujeme jejich počet.
+
+## Cockpit
+Cockpit je web management interface pro správu linux serverů/kuberentes/docker kontejnerů a mnohých dalčích technologií. Provedeme jeho instalaci pomocí:
+``` 
+yum install -y cockpit cockpit-ws cockpit-shell cockpit-kubernetes cockpit-docker
+systemctl enable cockpit.socket
+systemctl start cockpit
 ```
 
-Aplikace nenastartuje, protože nemá přístup do gitu. Napravíme to přidáním secret.
+Navštívíme url *ip:9090* a přihlásíme se jako uřivatel root. V liště záložek webové aplikace klikneme na cluster, kde vidíme informace o Kubernetes cluster a Docker kontejnerech.
 
-```
-oc patch -p '{"spec":{"source":{"sourceSecret":{"name":"mila-ssh"}}}}' bc/wapi
-```
 
-Spustíme nový build ručně, nebo pomocí webové console
 
-```
-oc start-build bc/wapi
-```
 
-Jakmile build úspěšně skončí, je třeba ještě nastavit profily
-
-```
-oc env dc/wapi SPRING_PROFILES_ACTIVE=default,staging
-```
