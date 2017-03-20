@@ -152,6 +152,14 @@ oc get pods
 ```
 zkontrolujeme jejich počet.
 
+## Openshift webové rozhraní
+Pro prozkoumání možností webového rozhraní OpenShift Origin nejprve nastavíme uživetele admin jako cluster admin pro celý OpenShift Origin cluster.
+
+``` 
+oc adm policy add-cluster-role-to-user cluster-admin admin
+```
+Poté se jako tento uživatel přihlásíme do webové konzole. Vidíme, že máme k dispozici systémové projekty (default) atp. Tyto projekty zahrnují systémové komponenty jako docker registry, metriky, atp.
+
 ## Cockpit
 Cockpit je web management interface pro správu linux serverů/kuberentes/docker kontejnerů a mnohých dalčích technologií. Provedeme jeho instalaci pomocí:
 ``` 
