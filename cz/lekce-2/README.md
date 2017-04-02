@@ -23,7 +23,7 @@ systemctl start nfs.sercie
 * Vytvoříme NFS exportované filesystémy
 ```
 setsebool -P virt_use_nfs 1
-mkdir -p /srv/pv/pv01 
+mkdir -p /srv/pv/pv01
 chown nfsnobody:nfsnobody /srv/pv/pv01/
 chmod 777 /srv/pv/pv01/
 ```
@@ -74,9 +74,9 @@ oc get pv
 
 ### Vytvoření Image Strem
 
-1. Vytvoříme image 
+1. Vytvoříme image
 ```
-docker build -t ldj/os-demo
+docker build -t ldj/os-demo .
 ```
 
 2. Nahrajeme ji do registrů
@@ -88,12 +88,14 @@ docker push ldj/os-demo
 
 
 4. Importujeme image do OpenShift Origin
+```
 oc create -f is.yaml
+```
 
 
 
 ## Šablony (Template)
-Šablony umožňují parametrizovaně definovat objekty pro OpenShift Origin - objektem může být například: Service, build configuration, Deployment configuration... Šablona dále může definovat seznam štítků (label), které budou aplikovány na každý objekt vytvoření šablonou.
+Šablony umožňují parametrizovaně definovat objekty pro OpenShift - objektem může být například: Service, build configuration, Deployment configuration... Šablona dále může definovat seznam štítků (label), které budou aplikovány na každý objekt vytvořený šablonou.
 
 Šablony můžete zpracovat pomocí přikazové řádky nebo webové konzole.
 
