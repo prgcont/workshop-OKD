@@ -173,7 +173,7 @@ Miloslav-MacBook-Pro:html mvlach$ curl http://localhost:8080/
 # docker login --username=developer -p $TOKEN $DOCKER_REGISTRY:5000
 # docker tag simple-s2i:latest $DOCKER_REGISTRY:5000/openshift/simple-s2i:latest
 # docker push $DOCKER_REGISTRY:5000/openshift/simple-s2i:latest
-# docker tag simple-s2i:latest $DOCKER_REGISTRY:5000/openshift/simple-s2i:latest --insecure=true
+# oc tag $DOCKER_REGISTRY:5000/openshift/simple-s2i:latest simple-s2i:latest --insecure=true
 ```
 
 Nyní můžeme vytvořit novou aplikaci
