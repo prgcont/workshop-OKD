@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. ./
+
