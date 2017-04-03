@@ -76,20 +76,20 @@ oc get pv
 
 1. Vytvoříme image
 ```
-docker build -t ldj/os-demo .
+docker build -t $vaseimage demoapp
 ```
 
 2. Nahrajeme ji do registrů
 ```
-docker push ldj/os-demo
+docker push $vaseimage
 ```
 
-3. Vytvoříme my-image-stream.json
+3. Upravime *demo-openshift/stream.json* 
 
 
 4. Importujeme image do OpenShift Origin
 ```
-oc create -f is.yaml
+oc create -f stream.json
 ```
 
 
@@ -103,13 +103,13 @@ oc create -f is.yaml
 ### Zprávování existující šablony
 Vezmeme šablonu přiloženou k tomuto repu a nasadíme je do našeho OpenShift Origin.
 ```
-oc process -f #TODO | co create -f -
+oc create -f *demo-openshift/temp.yaml*
 ```
 
 ### Modifikace šablony
 Otevřeme existující šablonu v OpenShift Origin
 ```
-oc edit template #TODO jmeno
+oc edit template <jmeno?
 ```
 ## Source to Image (s2i)
 

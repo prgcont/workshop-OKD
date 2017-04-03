@@ -1,0 +1,31 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "demo streams",
+        "annotations": {
+            "description": "ImageStream definitions for JBoss Middleware products."
+        }
+    },
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "rwngwn-demo"
+            },
+            "spec": {
+                "dockerImageRepository": "VASE-IMAGE",
+                "tags": [
+                    {
+                        "name": "1.1",
+                        "annotations": {
+                            "description": "demo app",
+                            "version": "1.1"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
