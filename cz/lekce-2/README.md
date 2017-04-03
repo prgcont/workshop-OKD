@@ -17,7 +17,7 @@ Pro zpřístupnění síťového úložiště musí administrátor OpenShift vyt
 ```
 yum install nfs-utils
 systemctl enable nfs.service
-systemctl start nfs.sercie
+systemctl start nfs.service
 ```
 
 * Vytvoříme NFS exportované filesystémy
@@ -28,7 +28,7 @@ chown nfsnobody:nfsnobody /srv/pv/pv01/
 chmod 777 /srv/pv/pv01/
 ```
 
-* Do /etx/exports.d/pv01.exports vložíme:
+* Do /etc/exports.d/pv01.exports vložíme:
 ```
 /srv/pv/pv01/ *(rw,all_squash)
 ```
@@ -61,7 +61,7 @@ items:
 
 * Importujeme pv.json do OpenShift Origin
 ```
-oc import -f pv.json
+oc create -f pv.json
 ```
 
 * Zkontrolujeme pv
@@ -72,7 +72,7 @@ oc get pv
 
 ## Image Streams
 
-### Vytvoření Image Strem
+### Vytvoření Image Stream
 
 1. Vytvoříme image
 ```
@@ -89,7 +89,7 @@ docker push $vaseimage
 
 4. Importujeme image do OpenShift Origin
 ```
-oc create -f stream.json
+oc create -f demo-openshift/stream.json
 ```
 
 
@@ -103,13 +103,13 @@ oc create -f stream.json
 ### Zprávování existující šablony
 Vezmeme šablonu přiloženou k tomuto repu a nasadíme je do našeho OpenShift Origin.
 ```
-oc create -f *demo-openshift/temp.yaml*
+oc create -f demo-openshift/temp.yaml
 ```
 
 ### Modifikace šablony
 Otevřeme existující šablonu v OpenShift Origin
 ```
-oc edit template <jmeno?
+oc edit template 
 ```
 ## Source to Image (s2i)
 

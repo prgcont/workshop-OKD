@@ -12,7 +12,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "rwngwn-demo"
+                "name": "VASE-IMAGE"
             },
             "spec": {
                 "dockerImageRepository": "VASE-IMAGE",
