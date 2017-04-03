@@ -158,7 +158,7 @@ CMD ["usage"]
 
 Otestování s2i
 ```
-s2i https://github.com/mvlach/html.git simple-s2i:latest testovaciaplikace:latest
+s2i build https://github.com/mvlach/html.git simple-s2i:latest testovaciaplikace:latest
 docker run -d -p 8080:8080 --name=testovaci-aplikace testovaciaplikace:latest
 
 Miloslav-MacBook-Pro:html mvlach$ curl http://localhost:8080/
