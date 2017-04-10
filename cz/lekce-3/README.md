@@ -1,6 +1,8 @@
 # Lekce 3
 
 * Pipelines
+* Metriky
+* Logování
 
 ## Pipelines
 
@@ -96,3 +98,21 @@ Ale jde to i komplikovaněji - https://fabric8.io/
 
 * https://github.com/vpavlin/vertx-web/blob/master/Jenkinsfile
 * https://github.com/fabric8io/fabric8-pipeline-library
+
+
+
+# Metriky
+Metriky v openshift jsou sbírány pomocí Heapster (který čte metriky ze /stats REST API), ukládány jsou pomocí Hawkular a cassandry.
+Metriky si na našem vývojovém clusteru nejsnadněji zpřístupníme pomocí
+```
+oc cluster up --metrics
+```
+Poté v OpenShift Origin konzole přisotupíme do projektu Opensfhit-infra, kde uvidíme deployované komponenty a router url pro přístup do hawkular. 
+
+# Logování
+
+Centrální logování je kritickou komponenout jakéhokoliv clusteru. V OpenShift Origin je integrován ELK(přesněji EFK) stack. Pro vyzkoušení logování spustíme:
+```
+oc cluster up --logging
+```
+Poté v OpenShift origin navstívíme projekt logging, kde uvídíme deployované komponenty a můžeme přistoupit do konzole Kibany. V OpenShift jsou logy separované dle projektu(namespace) a utentizace/autorizace je integrována pomocí OAUTH2.
