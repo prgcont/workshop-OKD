@@ -50,8 +50,6 @@ Pro základní experimentování s OpenShiftem je dobré vědět jak spustit vý
 
 Základní URL pro získání software je https://github.com/openshift/origin/releases.
 
-Verze, která je stabilní se kažnou chvíli mění, v tuto chvíli doporučuji 1.3.1 (máme v produkci), nebo 1.4.1 (do produkci budeme dávat). Verze 1.5.0-aplha3 je v tuto chvíli jen na hraní a reportování bugfixů.
-
 Stáhneme archiv odpovídající použitému operačnímu systému:
 
 * openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz
