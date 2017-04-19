@@ -1,6 +1,5 @@
 # Lekce 4
 
-* CI
-* OpenShift Pipelines
-* Jenkinsfile
-* Integrace s git(labem|hubem)
+* Monitoring (Prometheus)
+* Anisble
+* Základní troubleshouting (logy, exec, ...)
