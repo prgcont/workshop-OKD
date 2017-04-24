@@ -85,3 +85,66 @@ ALERT FilesystemFullIn30Days
   FOR 10h
   ANNOTATIONS {description="There will be less than 10% in less than 30 days.", summary="Full filesystem on {{ $labels.instance }} mountpoint {{ $lables.mountpoint}}"}
 ```
+
+## Instalace přes Ansible
+### Požadavky
+Instalace ansible verze 2.2.0.0 - zkoušel jsem jiné verze, ale vždy byly nějaké problémy
+
+Stáhnout 
+```
+https://github.com/openshift/openshift-ansible
+```
+
+switch na v1.4.x
+
+Server je nutné připravit tak, aby bylo nainstalováno několik závislostí a splněno:
+
+```
+yum -y install NetworkManager 
+systemctl status NetworkManager
+
+```
+
+Musíme mít přístup buď na roota, nebo přes sudo su. Nutno poladit /etc/sudoers - aby se nemuselo zadávat heslo.
+
+Ve složce inventory/byo/hosts je soubor, ve kterém nakonfigurujeme vlastní prostředí.
+
+```
+[OSEv3:children]
+masters
+nodes
+etcd
+nfs
+#new_nodes
+
+ansible_ssh_user=root
+
+
+deployment_type=origin
+openshift_release=v1.4
+openshift_image_tag=v1.4.1
+
+[masters]
+master.rohlik.local openshift_node_labels="{'region': 'master-infra', 'zone': 'default'}" schedulable=true
+
+[etcd]
+master.rohlik.local
+
+[nodes]
+master.rohlik.local openshift_node_labels="{'region': 'master-infra', 'zone': 'default'}" schedulable=true
+node1.rohlik.local openshift_node_labels="{'region': 'infra', 'zone': 'default'}" schedulable=true
+node[2:5].rohlik.local openshift_node_labels="{'region': 'primary', 'zone': 'default'}" schedulable=true
+
+[nfs]
+nfs.rohlik.local
+```
+
+Vlastní spuštění instalace
+
+```
+ansible-playbook -i ../production/hosts.master-prod playbooks/byo/config.yml
+```
+
+Doporučuji spouštět z Linuxových strojů - instalace na OS X fungovala, ale už nefunguje.
+
+Hodně štěstí.
