@@ -19,8 +19,18 @@ between them
 ** Exercise: Deploy demo-color-backend
 
 *Login to oc cluster*
+choose one of ips:
+104.248.45.131
+104.248.45.221
+104.248.249.57
+68.183.222.162
+68.183.219.99 
+68.183.223.44 
+68.183.219.203
+68.183.215.41 
+68.183.209.245
 
-Go to https://console.prague.gce.pixy.io:8443/console/ and copy `oc login ...` snippet.
+Go to https://$IP:8443/console/ and copy `oc login ...` snippet.
 
 #+BEGIN_SRC shell
 oc login ...
